@@ -89,6 +89,8 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,6 +122,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,6 +169,7 @@
     <ClCompile Include="src\jeu.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\menu.cpp" />
+    <ClCompile Include="src\menu_item.cpp" />
     <ClCompile Include="src\selectionlvl.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +180,7 @@
     <ClInclude Include="include\fichier.h" />
     <ClInclude Include="include\jeu.h" />
     <ClInclude Include="include\menu.h" />
+    <ClInclude Include="include\menu_item.h" />
     <ClInclude Include="include\selectionlvl.h" />
   </ItemGroup>
   <ItemGroup>

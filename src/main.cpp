@@ -9,12 +9,14 @@
 #include "../include/selectionlvl.h"
 #include "../include/fichier.h"
 #include "../include/audio.h"
+#include "../include/Menu.h"
 
 int main(int argc, char **argv) {
 	using namespace std;
 	Audio audio;
 
 	sf::RenderWindow window(sf::VideoMode(LARGEUR_FENETRE, HAUTEUR_FENETRE, 32), "Hero Quest");
+	Menu* menu = new Menu(window);
 
 	if (!audio.loadMusic("./assets/audio/musics/Title_Theme.ogg")) {
 		cout << "La musique n'a pas chargée";
@@ -29,15 +31,15 @@ int main(int argc, char **argv) {
 		cout << "La texture n'a pas chargée";
 	}
 
-	sf::Texture texturemenu;
-	if (!texturemenu.loadFromFile("./assets/textures/menu.png"))
+	sf::Texture textureMenu;
+	if (!textureMenu.loadFromFile("./assets/textures/Menu.png"))
 	{
 		cout << "La texture n'a pas chargée";
 	}
 
-	// Chargement de la texturesdu menu
+	// Chargement de la texturesdu Menu
 	sf::Sprite sprite;
-	sprite.setTexture(texturemenu);
+	sprite.setTexture(textureMenu);
 	// Modification la position absolue
 	sprite.setPosition(sf::Vector2f(0.f, 0.f)); 
 
@@ -49,22 +51,9 @@ int main(int argc, char **argv) {
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
-				if (event.type == sf::Event::KeyPressed) {
-				if (event.key.code == sf::Keyboard::Escape) {
-					window.close();
-				}
-				if (event.key.code == sf::Keyboard::Num1 || event.key.code == sf::Keyboard::Numpad1) {
-					audio.stopMusic();
-					selectionJeu(&window);
-				}
-				if (event.key.code == sf::Keyboard::Num2 || event.key.code == sf::Keyboard::Numpad2) {
-					audio.stopMusic();
-					selectionEdition(&window);
-				}
-				if (event.key.code == sf::Keyboard::Num3 || event.key.code == sf::Keyboard::Numpad3) {
-					audio.stopMusic();
-					regle(&window);
-				}
+			if (event.type == sf::Event::KeyPressed) {
+				menu->start_menu(event);
+				audio.stopMusic();
 			}
 		}
 

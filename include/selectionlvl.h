@@ -6,6 +6,6 @@
 
 #include "constantes.h"
 
-void selectionJeu(sf::RenderWindow* window);
+void selectionJeu(sf::RenderWindow& window);
 void selectionEdition(sf::RenderWindow* window);
 void regle(sf::RenderWindow* window);
