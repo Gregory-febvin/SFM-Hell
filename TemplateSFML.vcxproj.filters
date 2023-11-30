@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="assets\audio\musics\Level1.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\Level2.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\Level3.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\Level4.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\Level5.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\Pour_Bitentronc.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\Title_Theme.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\victoire.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\xDeviruchi-Minigame-.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\xDeviruchi-Take-some-rest-and-eat-some-food_.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\xDeviruchi-The-Final-of-The-Fantasy.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\audio\musics\xDeviruchi-The-Icy-Cave-.ogg">
+      <Filter>assets\audio\musics</Filter>
+    </None>
+    <None Include="assets\textures\menu.pfi">
+      <Filter>assets\textures</Filter>
+    </None>
+    <None Include="assets\textures\regle.pfi">
+      <Filter>assets\textures</Filter>
+    </None>
+    <None Include="assets\textures\selectionlvledition.pfi">
+      <Filter>assets\textures</Filter>
+    </None>
+    <None Include="assets\textures\selectionlvljeu.pfi">
+      <Filter>assets\textures</Filter>
+    </None>
+    <None Include="assets\stage\niveau1.lvl">
+      <Filter>assets\stage</Filter>
+    </None>
+    <None Include="assets\stage\niveau2.lvl">
+      <Filter>assets\stage</Filter>
+    </None>
+    <None Include="assets\stage\niveau3.lvl">
+      <Filter>assets\stage</Filter>
+    </None>
+    <None Include="assets\stage\niveau4.lvl">
+      <Filter>assets\stage</Filter>
+    </None>
+    <None Include="assets\stage\niveau5.lvl">
+      <Filter>assets\stage</Filter>
+    </None>
+    <None Include="assets\speech\niveau1.sp">
+      <Filter>assets\speech</Filter>
+    </None>
+    <None Include="assets\speech\niveau2.sp">
+      <Filter>assets\speech</Filter>
+    </None>
+    <None Include="assets\speech\niveau3.sp">
+      <Filter>assets\speech</Filter>
+    </None>
+    <None Include="assets\speech\niveau4.sp">
+      <Filter>assets\speech</Filter>
+    </None>
+    <None Include="assets\speech\niveau5.sp">
+      <Filter>assets\speech</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="assets">
+      <UniqueIdentifier>{37fdeee8-29bb-4411-923b-898022612ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\audio">
+      <UniqueIdentifier>{77c1c62f-7176-404a-97b8-a7d8675f3d62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\font">
+      <UniqueIdentifier>{f845934a-e60c-4131-a96e-1ebfb115fa96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\speech">
+      <UniqueIdentifier>{122c1858-0f9b-4e79-b787-d903faaa2415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\stage">
+      <UniqueIdentifier>{f4ae5bdc-be33-4727-b893-7e76319c3033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\textures">
+      <UniqueIdentifier>{2ecb9cad-a943-4653-a5fc-d7246ac4ae1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\audio\sounds">
+      <UniqueIdentifier>{5003f776-31af-4036-b1a4-2ed6aa453352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\audio\musics">
+      <UniqueIdentifier>{a2095f0c-6e62-4966-90c7-4c4b04674efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{b3595d74-af9e-40ae-bf2f-59bc067357b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{a7f76d1a-5665-4684-877a-2c7370e49275}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\audio.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chapter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\editeur.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fichier.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jeu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\menu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\selectionlvl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\audio.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\chapter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\constantes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\editeur.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\fichier.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jeu.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\menu.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\selectionlvl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\font\Ketchum Italic.otf">
+      <Filter>assets\font</Filter>
+    </Font>
+    <Font Include="assets\font\Ketchum.otf">
+      <Filter>assets\font</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\0.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\1.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\2.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\caisse.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\caisse_ok.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\choix_caisse.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\choix_caisse_ok.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\choix_mur.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\choix_objectif.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\choix_vide.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\mario.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\mario_bas.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\mario_droite.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\mario_gauche.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\mario_haut.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\menu.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\mur.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\objectif.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\regle.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\selectionlvledition.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\selectionlvljeu.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\vide.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

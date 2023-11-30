@@ -130,23 +130,80 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="audio.cpp" />
-    <ClCompile Include="editeur.cpp" />
-    <ClCompile Include="jeu.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="fichier.cpp" />
-    <ClCompile Include="selectionlvl.cpp" />
+    <None Include="assets\audio\musics\Level1.ogg" />
+    <None Include="assets\audio\musics\Level2.ogg" />
+    <None Include="assets\audio\musics\Level3.ogg" />
+    <None Include="assets\audio\musics\Level4.ogg" />
+    <None Include="assets\audio\musics\Level5.ogg" />
+    <None Include="assets\audio\musics\Pour_Bitentronc.ogg" />
+    <None Include="assets\audio\musics\Title_Theme.ogg" />
+    <None Include="assets\audio\musics\victoire.ogg" />
+    <None Include="assets\audio\musics\xDeviruchi-Minigame-.ogg" />
+    <None Include="assets\audio\musics\xDeviruchi-Take-some-rest-and-eat-some-food_.ogg" />
+    <None Include="assets\audio\musics\xDeviruchi-The-Final-of-The-Fantasy.ogg" />
+    <None Include="assets\audio\musics\xDeviruchi-The-Icy-Cave-.ogg" />
+    <None Include="assets\speech\niveau1.sp" />
+    <None Include="assets\speech\niveau2.sp" />
+    <None Include="assets\speech\niveau3.sp" />
+    <None Include="assets\speech\niveau4.sp" />
+    <None Include="assets\speech\niveau5.sp" />
+    <None Include="assets\stage\niveau1.lvl" />
+    <None Include="assets\stage\niveau2.lvl" />
+    <None Include="assets\stage\niveau3.lvl" />
+    <None Include="assets\stage\niveau4.lvl" />
+    <None Include="assets\stage\niveau5.lvl" />
+    <None Include="assets\textures\menu.pfi" />
+    <None Include="assets\textures\regle.pfi" />
+    <None Include="assets\textures\selectionlvledition.pfi" />
+    <None Include="assets\textures\selectionlvljeu.pfi" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="audio.h" />
-    <ClInclude Include="constantes.h" />
-    <ClInclude Include="editeur.h" />
-    <ClInclude Include="fichier.h" />
-    <ClInclude Include="jeu.h" />
-    <ClInclude Include="selectionlvl.h" />
+    <ClCompile Include="src\audio.cpp" />
+    <ClCompile Include="src\chapter.cpp" />
+    <ClCompile Include="src\editeur.cpp" />
+    <ClCompile Include="src\fichier.cpp" />
+    <ClCompile Include="src\jeu.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\menu.cpp" />
+    <ClCompile Include="src\selectionlvl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="niveau.lvl" />
+    <ClInclude Include="include\audio.h" />
+    <ClInclude Include="include\chapter.h" />
+    <ClInclude Include="include\constantes.h" />
+    <ClInclude Include="include\editeur.h" />
+    <ClInclude Include="include\fichier.h" />
+    <ClInclude Include="include\jeu.h" />
+    <ClInclude Include="include\menu.h" />
+    <ClInclude Include="include\selectionlvl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\font\Ketchum Italic.otf" />
+    <Font Include="assets\font\Ketchum.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\0.png" />
+    <Image Include="assets\textures\1.png" />
+    <Image Include="assets\textures\2.png" />
+    <Image Include="assets\textures\caisse.png" />
+    <Image Include="assets\textures\caisse_ok.png" />
+    <Image Include="assets\textures\choix_caisse.png" />
+    <Image Include="assets\textures\choix_caisse_ok.png" />
+    <Image Include="assets\textures\choix_mur.png" />
+    <Image Include="assets\textures\choix_objectif.png" />
+    <Image Include="assets\textures\choix_vide.png" />
+    <Image Include="assets\textures\mario.png" />
+    <Image Include="assets\textures\mario_bas.png" />
+    <Image Include="assets\textures\mario_droite.png" />
+    <Image Include="assets\textures\mario_gauche.png" />
+    <Image Include="assets\textures\mario_haut.png" />
+    <Image Include="assets\textures\menu.png" />
+    <Image Include="assets\textures\mur.png" />
+    <Image Include="assets\textures\objectif.png" />
+    <Image Include="assets\textures\regle.png" />
+    <Image Include="assets\textures\selectionlvledition.png" />
+    <Image Include="assets\textures\selectionlvljeu.png" />
+    <Image Include="assets\textures\vide.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

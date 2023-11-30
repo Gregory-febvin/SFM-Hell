@@ -6,7 +6,7 @@
 #include <string>
 #include <vector> 
 
-#include "constantes.h"
+#include "../include/constantes.h"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ int chargerNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl){
 	int i = 0, j = 0;
 
     // Chemin de fichier de niveau
-    std::string path = "src/stage/niveau";
+    std::string path = "./assets/stage/niveau";
     path += std::to_string(lvl);
     path += ".lvl";
 
@@ -61,7 +61,7 @@ int sauvegarderNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl){
     int i = 0, j = 0;
 
     // Chemin de fichier de niveau
-    std::string path = "src/stage/niveau";
+    std::string path = "./assets/stage/niveau";
     path += std::to_string(lvl);
     path += ".lvl";
 
@@ -84,7 +84,7 @@ int sauvegarderNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl){
 std::vector<std::string> readDialogues(int lvl) {
 
 	// Chemin du fichier de niveau
-	std::string path = "src/speech/niveau";
+	std::string path = "./assets/speech/niveau";
 	path += std::to_string(lvl);
 	path += ".sp";
 

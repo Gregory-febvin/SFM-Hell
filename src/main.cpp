@@ -5,10 +5,10 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "constantes.h"
-#include "selectionlvl.h"
-#include "fichier.h"
-#include "audio.h"
+#include "../include/constantes.h"
+#include "../include/selectionlvl.h"
+#include "../include/fichier.h"
+#include "../include/audio.h"
 
 int main(int argc, char **argv) {
 	using namespace std;
@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
 
 	sf::RenderWindow window(sf::VideoMode(LARGEUR_FENETRE, HAUTEUR_FENETRE, 32), "Hero Quest");
 
-	if (!audio.loadMusic("src/audio/Title_Theme.ogg")) {
+	if (!audio.loadMusic("./assets/audio/musics/Title_Theme.ogg")) {
 		cout << "La musique n'a pas chargée";
 	}
 	else {
@@ -24,13 +24,13 @@ int main(int argc, char **argv) {
 	}
 
 	sf::Texture texture;
-	if (!texture.loadFromFile("src/img/caisse.png")) // permet de charger la texture
+	if (!texture.loadFromFile("./assets/textures/caisse.png")) // permet de charger la texture
 	{
 		cout << "La texture n'a pas chargée";
 	}
 
 	sf::Texture texturemenu;
-	if (!texturemenu.loadFromFile("src/img/menu.png"))
+	if (!texturemenu.loadFromFile("./assets/textures/menu.png"))
 	{
 		cout << "La texture n'a pas chargée";
 	}

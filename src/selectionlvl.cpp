@@ -4,11 +4,11 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "constantes.h"
-#include "fichier.h"
-#include "jeu.h"
-#include "editeur.h"
-#include "audio.h"
+#include "../include/constantes.h"
+#include "../include/fichier.h"
+#include "../include/jeu.h"
+#include "../include/editeur.h"
+#include "../include/audio.h"
 
 void selectionJeu(sf::RenderWindow* window) {
 
@@ -18,7 +18,7 @@ void selectionJeu(sf::RenderWindow* window) {
     sf::Texture textureSeclectionLvl;
     sf::Sprite selectionLvl;
 
-    textureSeclectionLvl.loadFromFile("src/img/selectionlvljeu.png");
+    textureSeclectionLvl.loadFromFile("./assets/textures/selectionlvljeu.png");
     selectionLvl.setTexture(textureSeclectionLvl);
 
     // On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
@@ -65,7 +65,7 @@ void selectionEdition(sf::RenderWindow* window) {
     sf::Texture textureSeclectionLvl;
     sf::Sprite selectionLvl;
 
-    textureSeclectionLvl.loadFromFile("src/img/selectionlvledition.png");
+    textureSeclectionLvl.loadFromFile("./assets/textures/selectionlvledition.png");
     selectionLvl.setTexture(textureSeclectionLvl);
 
     // On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
@@ -112,7 +112,7 @@ void regle(sf::RenderWindow* window) {
     sf::Texture textureRegle;
     sf::Sprite regle;
 
-    textureRegle.loadFromFile("src/img/regle.png");
+    textureRegle.loadFromFile("./assets/textures/regle.png");
     regle.setTexture(textureRegle);
 
     // On fait tourner le programme jusqu'à ce que la fenêtre soit fermée

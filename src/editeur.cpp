@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "constantes.h"
-#include "fichier.h"
+#include "../include/constantes.h"
+#include "../include/fichier.h"
 
 void editeur(sf::RenderWindow* window, int lvl) {
 
@@ -19,45 +19,45 @@ void editeur(sf::RenderWindow* window, int lvl) {
 
     // Chargement de la police d'écriture
     sf::Font font;
-    font.loadFromFile("src/font/Ketchum.otf");
+    font.loadFromFile("./assets/font/Ketchum.otf");
 
     // Chargement des sprites
     sf::Texture textureVide, textureChoixVide, textureMur, textureChoixMur, textureCaisse, textureChoixCaisse, textureObjectif, textureChoixObjectif, textureCaisseOk, textureChoixCaisseOK, textureMario, textureChoixMario;
     
-    textureVide.loadFromFile("src/img/vide.png");
+    textureVide.loadFromFile("./assets/textures/vide.png");
     vide.setTexture(textureVide);
 
-    textureChoixVide.loadFromFile("src/img/choix_vide.png");
+    textureChoixVide.loadFromFile("./assets/textures/choix_vide.png");
     choixVide.setTexture(textureChoixVide);
 
-    textureMur.loadFromFile("src/img/mur.png");
+    textureMur.loadFromFile("./assets/textures/mur.png");
     mur.setTexture(textureMur);
 
-    textureChoixMur.loadFromFile("src/img/choix_mur.png");
+    textureChoixMur.loadFromFile("./assets/textures/choix_mur.png");
     choixMur.setTexture(textureChoixMur);
 
-    textureCaisse.loadFromFile("src/img/caisse.png");
+    textureCaisse.loadFromFile("./assets/textures/caisse.png");
     caisse.setTexture(textureCaisse);
 
-    textureChoixCaisse.loadFromFile("src/img/choix_caisse.png");
+    textureChoixCaisse.loadFromFile("./assets/textures/choix_caisse.png");
     choixCaisse.setTexture(textureChoixCaisse);
 
-    textureObjectif.loadFromFile("src/img/objectif.png");
+    textureObjectif.loadFromFile("./assets/textures/objectif.png");
     objectif.setTexture(textureObjectif);
 
-    textureChoixObjectif.loadFromFile("src/img/choix_objectif.png");
+    textureChoixObjectif.loadFromFile("./assets/textures/choix_objectif.png");
     choixObjectif.setTexture(textureChoixObjectif);
 
-    textureCaisseOk.loadFromFile("src/img/caisse_ok.png");
+    textureCaisseOk.loadFromFile("./assets/textures/caisse_ok.png");
     caisseOk.setTexture(textureCaisseOk);
 
-    textureChoixCaisseOK.loadFromFile("src/img/choix_caisse_ok.png");
+    textureChoixCaisseOK.loadFromFile("./assets/textures/choix_caisse_ok.png");
     choixCaisseOk.setTexture(textureChoixCaisseOK);
 
-    textureMario.loadFromFile("src/img/mario_bas.png");
+    textureMario.loadFromFile("./assets/textures/mario_bas.png");
     mario.setTexture(textureMario);
 
-    textureChoixMario.loadFromFile("src/img/mario.png");
+    textureChoixMario.loadFromFile("./assets/textures/mario.png");
     choixMario.setTexture(textureChoixMario);
 
     chargerNiveau(carte, lvl);

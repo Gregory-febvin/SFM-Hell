@@ -6,10 +6,10 @@
 #include <iostream>
 #include <Windows.h>
 
-#include "constantes.h"
-#include "fichier.h"
-#include "jeu.h"
-#include "audio.h"
+#include "../include/constantes.h"
+#include "../include/fichier.h"
+#include "../include/jeu.h"
+#include "../include/audio.h"
 
 using namespace std;
 using namespace sf;
@@ -27,39 +27,39 @@ int jouer(sf::RenderWindow* window, int lvl) {
 
 	// Chargement de la police d'écriture
 	sf::Font font;
-	font.loadFromFile("src/font/Ketchum.otf");
+	font.loadFromFile("./assets/font/Ketchum.otf");
 
 	// Chargement des textures des objets
 	sf::Texture textureVide, textureMur, textureCaisse, textureCaisseOk, textureObjectif, textureMario[5];
 
-	textureVide.loadFromFile("src/img/vide.png");
+	textureVide.loadFromFile("./assets/textures/vide.png");
 	vide.setTexture(textureVide);
 
-	textureMur.loadFromFile("src/img/mur.png");
+	textureMur.loadFromFile("./assets/textures/mur.png");
 	mur.setTexture(textureMur);
 
-	textureCaisse.loadFromFile("src/img/caisse.png");
+	textureCaisse.loadFromFile("./assets/textures/caisse.png");
 	caisse.setTexture(textureCaisse);
 
-	textureCaisseOk.loadFromFile("src/img/caisse_ok.png");
+	textureCaisseOk.loadFromFile("./assets/textures/caisse_ok.png");
 	caisseOk.setTexture(textureCaisseOk);
 
-	textureObjectif.loadFromFile("src/img/objectif.png");
+	textureObjectif.loadFromFile("./assets/textures/objectif.png");
 	objectif.setTexture(textureObjectif);
 
-	textureMario[HAUT].loadFromFile("src/img/mario_haut.png");
+	textureMario[HAUT].loadFromFile("./assets/textures/mario_haut.png");
 
-	textureMario[BAS].loadFromFile("src/img/mario_bas.png");
+	textureMario[BAS].loadFromFile("./assets/textures/mario_bas.png");
 
-	textureMario[GAUCHE].loadFromFile("src/img/mario_gauche.png");
+	textureMario[GAUCHE].loadFromFile("./assets/textures/mario_gauche.png");
 
-	textureMario[DROITE].loadFromFile("src/img/mario_droite.png");
+	textureMario[DROITE].loadFromFile("./assets/textures/mario_droite.png");
 
 	// Chargement des musiques
 	sf::SoundBuffer sonBufferVictoire;
 	sf::Sound sonVictoire;
 
-	sonBufferVictoire.loadFromFile("src/audio/victoire.ogg");
+	sonBufferVictoire.loadFromFile("./assets/audio/musics/victoire.ogg");
 	sonVictoire.setBuffer(sonBufferVictoire);
 
 	// Chargement du niveau
@@ -162,7 +162,7 @@ int jouer(sf::RenderWindow* window, int lvl) {
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			sf::Texture texture;
-			if (!texture.loadFromFile("src/img/" + std::to_string(currentDialogueIndex) + ".png")) {
+			if (!texture.loadFromFile("./assets/textures/" + std::to_string(currentDialogueIndex) + ".png")) {
 				// Handle error if the image fails to load
 				std::cout << "Unable to load picture" << std::endl;
 			}

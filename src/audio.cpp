@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "audio.h"
-#include "constantes.h"
-#include "fichier.h"
-#include "jeu.h"
-#include "editeur.h"
+#include "../include/audio.h"
+#include "../include/constantes.h"
+#include "../include/fichier.h"
+#include "../include/jeu.h"
+#include "../include/editeur.h"
 
 Audio::Audio() {
     
