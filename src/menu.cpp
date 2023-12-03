@@ -1,31 +1,31 @@
 #include "../include/menu.h"
 
-//namespace fs = std::filesystem;
+namespace fs = std::filesystem;
 
-Menu::Menu(sf::RenderWindow& window) : window(window)
+Menu::Menu(sf::RenderWindow* window) : window(window)
 {
 	
 }
 
 void Menu::draw() {
-	for (auto& item : items) {
-		item.draw(window);
+	for (const auto& item : menu_items) {
+		item->draw();
 	}
 }
 
 void Menu::moveUp() {
 	if (selectedItemIndex > 0) {
-		items[selectedItemIndex].setSelected(false);
+		menu_items[selectedItemIndex]->setSelected(false);
 		selectedItemIndex--;
-		items[selectedItemIndex].setSelected(true);
+		menu_items[selectedItemIndex]->setSelected(true);
 	}
 }
 
 void Menu::moveDown() {
-	if (selectedItemIndex < items.size() - 1) {
-		items[selectedItemIndex].setSelected(false);
+	if (selectedItemIndex < menu_items.size() - 1) {
+		menu_items[selectedItemIndex]->setSelected(false);
 		selectedItemIndex++;
-		items[selectedItemIndex].setSelected(true);
+		menu_items[selectedItemIndex]->setSelected(true);
 	}
 }
 
@@ -33,20 +33,58 @@ int Menu::getSelectedItemIndex() const {
 	return selectedItemIndex;
 }
 
-void Menu::start_menu(sf::Event event) 
+void Menu::create_start_menu()
 {
 
-	if (event.key.code == sf::Keyboard::Escape) {
-		window.close();
+	musicMenu();
+
+	if (!font.loadFromFile("./assets/font/Ketchum.otf")) {
+		std::cout << "Failed to load font!" << std::endl;
 	}
-	if (event.key.code == sf::Keyboard::Num1 || event.key.code == sf::Keyboard::Numpad1) {
-		selectionJeu(window);
+
+	menu_items.push_back(std::make_shared<MenuItem>(window, font, "NEW GAME", sf::Vector2f(100, 100)));
+	menu_items.push_back(std::make_shared<MenuItem>(window, font, "SELECT CHAPTER", sf::Vector2f(100, 150)));
+	menu_items.push_back(std::make_shared<MenuItem>(window, font, "EDITOR", sf::Vector2f(100, 200)));
+	menu_items.push_back(std::make_shared<MenuItem>(window, font, "EXIT", sf::Vector2f(100, 250)));
+
+	selectedItemIndex = 0;
+	if (selectedItemIndex >= 0 && selectedItemIndex < menu_items.size()) {
+		menu_items[selectedItemIndex]->setSelected(true);
 	}
-	if (event.key.code == sf::Keyboard::Num2 || event.key.code == sf::Keyboard::Numpad2) {
-		selectionEdition(&window);
-	}
-	if (event.key.code == sf::Keyboard::Num3 || event.key.code == sf::Keyboard::Numpad3) {
-		regle(&window);
+
+}
+
+void Menu::select_start_menu(sf::Event event) 
+{
+
+	SelectionLvl selectionLvl(window);
+
+	if (event.type == sf::Event::KeyPressed) {
+		if (event.key.code == sf::Keyboard::Up) {
+			moveUp();
+		}
+		if (event.key.code == sf::Keyboard::Down) {
+			moveDown();
+		}
+		if (event.key.code == sf::Keyboard::Enter) {
+			switch (getSelectedItemIndex())
+			{
+			case 0:
+				selectionLvl.selectionJeu();
+				break;
+			case 1:
+				selectionLvl.selectionJeu();
+				break;
+			case 2:
+				selectionLvl.selectionEdition();
+				break;
+			case 3:
+				window->close();
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 }
@@ -58,20 +96,26 @@ void Menu::create_chapter_menu()
 		std::cout << "Failed to load font!" << std::endl;
 	}
 
-	items.push_back(MenuItem("Option 1", sf::Vector2f(100, 100)));
-	items.push_back(MenuItem("Option 2", sf::Vector2f(100, 150)));
-	items.push_back(MenuItem("Option 3", sf::Vector2f(100, 200)));
-
-	/*for (const auto& entry : fs::directory_iterator("./assets/stage")) {
+	int entry_count = 0;
+	for (const auto& entry : fs::directory_iterator("./assets/stage")) {
 		if (entry.is_regular_file()) {
-			std::cout << "File name: " << entry.path().filename() << std::endl;
+			entry_count++;
 		}
-	}*/
+	}
+
+	for (int i = 0; i < entry_count; i++) {
+		menu_items.push_back(std::make_shared<MenuItem>(
+			window,
+			font,
+			intToRoman(i + 1),
+			sf::Vector2f(((LARGEUR_FENETRE - (LARGEUR_LABEL_LVL * entry_count)) / 2) + (LARGEUR_LABEL_LVL * i), 100)
+			));
+	}
 
 
 	selectedItemIndex = 0;
-	if (selectedItemIndex >= 0 && selectedItemIndex < items.size()) {
-		items[selectedItemIndex].setSelected(true);
+	if (selectedItemIndex >= 0 && selectedItemIndex < menu_items.size()) {
+		menu_items[selectedItemIndex]->setSelected(true);
 	}
 
 }
@@ -79,14 +123,60 @@ void Menu::create_chapter_menu()
 void Menu::select_chapter_menu(sf::Event event)
 {
 	if (event.type == sf::Event::KeyPressed) {
-		if (event.key.code == sf::Keyboard::Up) {
+		if (event.key.code == sf::Keyboard::Left) {
 			moveUp();
 		}
-		if (event.key.code == sf::Keyboard::Down) {
+		if (event.key.code == sf::Keyboard::Right) {
 			moveDown();
 		}
 		if (event.key.code == sf::Keyboard::Enter) {
-			std::cout << "Option sélectionnée : " << getSelectedItemIndex() << std::endl;
+			jouer(window, getSelectedItemIndex() + 1);
 		}
 	}
+}
+
+void Menu::select_editor_menu(sf::Event event)
+{
+	if (event.type == sf::Event::KeyPressed) {
+		if (event.key.code == sf::Keyboard::Left) {
+			moveUp();
+		}
+		if (event.key.code == sf::Keyboard::Right) {
+			moveDown();
+		}
+		if (event.key.code == sf::Keyboard::Enter) {
+			editeur(window, getSelectedItemIndex() + 1);
+		}
+	}
+}
+
+void Menu::musicMenu() {
+
+	if (!audio.loadMusic("./assets/audio/musics/Title_Theme.ogg")) {
+		cout << "La musique n'a pas chargée";
+	} else {
+		audio.playMusic();
+	}
+
+}
+
+void Menu::clearMenu() {
+	window->clear();
+	menu_items.clear();
+	selectedItemIndex = 0;
+}
+
+string Menu::intToRoman(int num) {
+	std::vector<int> values = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+	std::vector<std::string> numerals = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+
+	std::string result = "";
+	for (size_t i = 0; i < values.size(); ++i) {
+		while (num >= values[i]) {
+			num -= values[i];
+			result += numerals[i];
+		}
+	}
+
+	return result;
 }

@@ -4,8 +4,24 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "constantes.h"
+#include "../include/constantes.h"
+#include "../include/jeu.h"
+#include "../include/editeur.h"
+using namespace std;
 
-void selectionJeu(sf::RenderWindow& window);
-void selectionEdition(sf::RenderWindow* window);
-void regle(sf::RenderWindow* window);
+#include "../include/audio.h"
+#include "../include/Menu.h"
+
+class SelectionLvl
+{
+
+public:
+	SelectionLvl(sf::RenderWindow* window);
+
+	void selectionJeu();
+	void selectionEdition();
+	//void regle();
+
+private:
+	sf::RenderWindow* window;
+};
