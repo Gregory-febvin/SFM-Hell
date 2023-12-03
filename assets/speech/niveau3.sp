@@ -1,4 +1,2 @@
-I shall perform this final blow as a parting gift to you!"
-I will tell you of the beginning. Heaven and Earth split, nothingness congratulated creation, my Sword of Rupture cleaved the world!
-Mortar of the stars, heaven's hell is the eve of creation's celebration. Now you shall die and be silent...
-Enuma Elish!
+Malina, The Gamer Demon$Suck$./assets/textures/Malina/1.png
+Lucy, The CEO of Hell$Just ok$./assets/textures/Lucy/1.png

@@ -1,8 +1,7 @@
 #include "../include/menu.h"
 
-namespace fs = std::filesystem;
-
-Menu::Menu(sf::RenderWindow* window) : window(window)
+Menu::Menu(sf::RenderWindow* window) 
+	: window(window)
 {
 	
 }
@@ -70,13 +69,13 @@ void Menu::select_start_menu(sf::Event event)
 			switch (getSelectedItemIndex())
 			{
 			case 0:
-				selectionLvl.selectionJeu();
+				selectionLvl.selectGame();
 				break;
 			case 1:
-				selectionLvl.selectionJeu();
+				selectionLvl.selectChapter();
 				break;
 			case 2:
-				selectionLvl.selectionEdition();
+				selectionLvl.selectChapterEditor();
 				break;
 			case 3:
 				window->close();
@@ -96,12 +95,8 @@ void Menu::create_chapter_menu()
 		std::cout << "Failed to load font!" << std::endl;
 	}
 
-	int entry_count = 0;
-	for (const auto& entry : fs::directory_iterator("./assets/stage")) {
-		if (entry.is_regular_file()) {
-			entry_count++;
-		}
-	}
+	Fichier fichier;
+	int entry_count = fichier.nbLvlFile();
 
 	for (int i = 0; i < entry_count; i++) {
 		menu_items.push_back(std::make_shared<MenuItem>(
@@ -130,7 +125,17 @@ void Menu::select_chapter_menu(sf::Event event)
 			moveDown();
 		}
 		if (event.key.code == sf::Keyboard::Enter) {
-			jouer(window, getSelectedItemIndex() + 1);
+			Jeu jeu(window, getSelectedItemIndex() + 1);
+
+			int cinematic = jeu.cinematic();
+			if (cinematic == ERROR_EXIT) {
+				return;
+			}
+
+			int jouer = jeu.jouer();
+			if (jouer == ERROR_EXIT) {
+				return;
+			}
 		}
 	}
 }

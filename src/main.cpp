@@ -1,5 +1,4 @@
 #define _CRT_SECURE_NO_WARNINGS
-using namespace std;
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
@@ -14,7 +13,7 @@ using namespace std;
 int main(int argc, char **argv) {
 	
 
-	sf::RenderWindow window(sf::VideoMode(LARGEUR_FENETRE, HAUTEUR_FENETRE, 32), "Hero Quest");
+	sf::RenderWindow window(sf::VideoMode(LARGEUR_FENETRE, HAUTEUR_FENETRE, 32), "SFM HELL");
 	Menu menu(&window);
 
 	menu.create_start_menu();

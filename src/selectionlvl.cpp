@@ -5,15 +5,53 @@ SelectionLvl::SelectionLvl(sf::RenderWindow* window) : window(window)
 
 }
 
-void SelectionLvl::selectionJeu()
+void SelectionLvl::selectGame()
+{
+	bool continuer = true;
+
+	// On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
+	while (continuer) {
+		// On inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
+		sf::Event event;
+		while (window->pollEvent(event)) {
+
+			if (event.type == sf::Event::Closed) {
+				window->close();
+			}
+
+			Fichier fichier;
+			for (int i = 1; i < fichier.nbLvlFile() + 1; i++) {
+				Jeu jeu(window, i);
+
+				int cinematic = jeu.cinematic();
+				if (cinematic == ERROR_EXIT) {
+					return;
+				}
+
+				int jouer = jeu.jouer();
+				if (jouer == ERROR_EXIT) {
+					return;
+				}
+			}
+			return;
+
+		}
+
+		// Effacement et dessin
+		window->clear();
+		window->display();
+	}
+}
+
+void SelectionLvl::selectChapter()
 {
 
-	int continuer = 1;
+	bool continuer = true;
 	Menu menu(window);
 	menu.create_chapter_menu();
 
 	// On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
-	while (continuer == 1) {
+	while (continuer) {
 		// On inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
 		sf::Event event;
 		while (window->pollEvent(event)) {
@@ -37,7 +75,7 @@ void SelectionLvl::selectionJeu()
 
 }
 
-void SelectionLvl::selectionEdition() {
+void SelectionLvl::selectChapterEditor() {
 
     int continuer = 1;
 	Menu menu(window);

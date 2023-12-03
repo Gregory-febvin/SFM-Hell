@@ -111,6 +111,12 @@
     <Filter Include="src">
       <UniqueIdentifier>{a7f76d1a-5665-4684-877a-2c7370e49275}</UniqueIdentifier>
     </Filter>
+    <Filter Include="assets\textures\Malina">
+      <UniqueIdentifier>{c5f00a73-3c52-4af6-937e-8ee13bf4be43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\textures\Lucy">
+      <UniqueIdentifier>{d4cc3def-a3c1-4d94-9e96-0330104428e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\audio.cpp">
@@ -179,15 +185,6 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\textures\0.png">
-      <Filter>assets\textures</Filter>
-    </Image>
-    <Image Include="assets\textures\1.png">
-      <Filter>assets\textures</Filter>
-    </Image>
-    <Image Include="assets\textures\2.png">
-      <Filter>assets\textures</Filter>
-    </Image>
     <Image Include="assets\textures\caisse.png">
       <Filter>assets\textures</Filter>
     </Image>
@@ -243,6 +240,15 @@
       <Filter>assets\textures</Filter>
     </Image>
     <Image Include="assets\textures\vide.png">
+      <Filter>assets\textures</Filter>
+    </Image>
+    <Image Include="assets\textures\Malina\1.png">
+      <Filter>assets\textures\Malina</Filter>
+    </Image>
+    <Image Include="assets\textures\Lucy\1.png">
+      <Filter>assets\textures\Lucy</Filter>
+    </Image>
+    <Image Include="assets\textures\background.png">
       <Filter>assets\textures</Filter>
     </Image>
   </ItemGroup>

@@ -188,9 +188,7 @@
     <Font Include="assets\font\Ketchum.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\textures\0.png" />
-    <Image Include="assets\textures\1.png" />
-    <Image Include="assets\textures\2.png" />
+    <Image Include="assets\textures\background.png" />
     <Image Include="assets\textures\caisse.png" />
     <Image Include="assets\textures\caisse_ok.png" />
     <Image Include="assets\textures\choix_caisse.png" />
@@ -198,6 +196,8 @@
     <Image Include="assets\textures\choix_mur.png" />
     <Image Include="assets\textures\choix_objectif.png" />
     <Image Include="assets\textures\choix_vide.png" />
+    <Image Include="assets\textures\Lucy\1.png" />
+    <Image Include="assets\textures\Malina\1.png" />
     <Image Include="assets\textures\mario.png" />
     <Image Include="assets\textures\mario_bas.png" />
     <Image Include="assets\textures\mario_droite.png" />

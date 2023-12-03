@@ -60,7 +60,8 @@ void editeur(sf::RenderWindow* window, int lvl) {
     textureChoixMario.loadFromFile("./assets/textures/mario.png");
     choixMario.setTexture(textureChoixMario);
 
-    chargerNiveau(carte, lvl);
+	Fichier fichier;
+    fichier.chargerNiveau(carte, lvl);
 
     // On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
     while (continuer == 1) {
@@ -95,10 +96,10 @@ void editeur(sf::RenderWindow* window, int lvl) {
                 }
                 //Sauvegarde et chargement du niveau
                 if (event.key.code == sf::Keyboard::Enter) {
-                    sauvegarderNiveau(carte, lvl);
+                    fichier.sauvegarderNiveau(carte, lvl);
                 }
                 if (event.key.code == sf::Keyboard::BackSpace) {
-                    chargerNiveau(carte, lvl);
+                    fichier.chargerNiveau(carte, lvl);
                 }
             }
 

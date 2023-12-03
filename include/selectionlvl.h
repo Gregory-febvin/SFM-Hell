@@ -7,10 +7,11 @@
 #include "../include/constantes.h"
 #include "../include/jeu.h"
 #include "../include/editeur.h"
-using namespace std;
 
 #include "../include/audio.h"
 #include "../include/Menu.h"
+
+using namespace std;
 
 class SelectionLvl
 {
@@ -18,8 +19,9 @@ class SelectionLvl
 public:
 	SelectionLvl(sf::RenderWindow* window);
 
-	void selectionJeu();
-	void selectionEdition();
+	void selectGame();
+	void selectChapter();
+	void selectChapterEditor();
 	//void regle();
 
 private:

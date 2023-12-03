@@ -1,16 +1,10 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdlib.h>
-#include <stdio.h>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector> 
+#include "../include/fichier.h"
 
-#include "../include/constantes.h"
+Fichier::Fichier()
+{
+}
 
-using namespace std;
-
-int chargerNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl){
+int Fichier::chargerNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl){
 
 	FILE* fichier = NULL;
 	char ligneFichier[NB_BLOCS_LARGEUR * NB_BLOCS_HAUTEUR + 1] = { 0 };
@@ -55,7 +49,7 @@ int chargerNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl){
     return 1;
 }
 
-int sauvegarderNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl){
+int Fichier::sauvegarderNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl){
 
     FILE* fichier = NULL;
     int i = 0, j = 0;
@@ -81,14 +75,14 @@ int sauvegarderNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl){
     return 1;
 }
 
-std::vector<std::string> readDialogues(int lvl) {
+std::vector<Fichier::DialogueData> Fichier::readDialogues(int lvl) {
 
 	// Chemin du fichier de niveau
 	std::string path = "./assets/speech/niveau";
 	path += std::to_string(lvl);
 	path += ".sp";
 
-	std::vector<std::string> dialogues;
+	std::vector<DialogueData> dialogues;
 
 	std::ifstream fichier(path);
 	if (!fichier.is_open()) {
@@ -98,15 +92,30 @@ std::vector<std::string> readDialogues(int lvl) {
 
 	std::string line;
 	while (std::getline(fichier, line)) {
-		dialogues.push_back(line);
+		std::regex regexPattern(R"(([^$]+)\$([^$]+)\$([^$]+))");
+		std::smatch match;
+
+		if (std::regex_match(line, match, regexPattern)) {
+			DialogueData dialogueData;
+			dialogueData.name = match[1];
+			dialogueData.speech = match[2];
+			dialogueData.path = match[3];
+			dialogues.push_back(dialogueData);
+		}
 	}
 
 	fichier.close();
 
-	std::cout << "Dialogues:" << std::endl;
-	for (const auto &dialogue : dialogues) {
-		std::cout << dialogue << std::endl;
-	}
-
 	return dialogues;
+}
+
+int Fichier::nbLvlFile()
+{
+	int entry_count = 0;
+	for (const auto& entry : fs::directory_iterator("./assets/stage")) {
+		if (entry.is_regular_file()) {
+			entry_count++;
+		}
+	}
+	return entry_count;
 }

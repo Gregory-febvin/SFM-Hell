@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include <SFML/Graphics.hpp>
 #include <iostream>

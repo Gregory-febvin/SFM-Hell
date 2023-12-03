@@ -1,16 +1,18 @@
 #pragma once
-using namespace std;
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <filesystem>
 #include <iostream>
 
-#include "../include/audio.h"
-#include "../include/menu_item.h"
-#include "../include/selectionlvl.h"
-#include "../include/jeu.h"
-#include "../include/constantes.h"
+#include "audio.h"
+#include "menu_item.h"
+#include "selectionlvl.h"
+#include "jeu.h"
+#include "constantes.h"
+#include "fichier.h"
+
+namespace fs = std::filesystem;
 
 class Menu
 {
@@ -31,7 +33,7 @@ public:
 
 	void musicMenu();
 	void clearMenu();
-	string intToRoman(int num);
+	std::string intToRoman(int num);
 
 private:
 	sf::RenderWindow* window;
