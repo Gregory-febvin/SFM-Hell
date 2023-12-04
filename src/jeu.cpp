@@ -8,7 +8,7 @@ Jeu::Jeu(sf::RenderWindow* window, int lvl)
 
 void Jeu::loadAssets() {
 	// Chargement de la police d'écriture
-	font.loadFromFile("./assets/font/Ketchum.otf");
+	font.loadFromFile("./assets/font/CrimsonPro-SemiBold.ttf");
 
 	// Chargement des textures des objets
 	textureVide.loadFromFile("./assets/textures/vide.png");
@@ -41,7 +41,7 @@ int Jeu::cinematic() {
 	sf::Sprite background_sprite, character_sprite;
 	sf::Texture background_texture, character_texture;
 
-	if (!font.loadFromFile("./assets/font/Ketchum.otf")) {
+	if (!font.loadFromFile("./assets/font/CrimsonPro-SemiBold.ttf")) {
 		std::cout << "Failed to load font!" << std::endl;
 	}
 

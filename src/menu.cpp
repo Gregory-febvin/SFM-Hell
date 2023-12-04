@@ -37,7 +37,7 @@ void Menu::create_start_menu()
 
 	musicMenu();
 
-	if (!font.loadFromFile("./assets/font/Ketchum.otf")) {
+	if (!font.loadFromFile("./assets/font/CrimsonPro-SemiBold.ttf")) {
 		std::cout << "Failed to load font!" << std::endl;
 	}
 
@@ -92,7 +92,7 @@ void Menu::select_start_menu(sf::Event event)
 void Menu::create_chapter_menu()
 {
 
-	if (!font.loadFromFile("./assets/font/Ketchum.otf")) {
+	if (!font.loadFromFile("./assets/font/CrimsonPro-SemiBold.ttf")) {
 		std::cout << "Failed to load font!" << std::endl;
 	}
 

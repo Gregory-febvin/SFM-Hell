@@ -19,7 +19,7 @@ void editeur(sf::RenderWindow* window, int lvl) {
 
     // Chargement de la police d'écriture
     sf::Font font;
-    font.loadFromFile("./assets/font/Ketchum.otf");
+    font.loadFromFile("./assets/font/CrimsonPro-SemiBold.ttf");
 
     // Chargement des sprites
     sf::Texture textureVide, textureChoixVide, textureMur, textureChoixMur, textureCaisse, textureChoixCaisse, textureObjectif, textureChoixObjectif, textureCaisseOk, textureChoixCaisseOK, textureMario, textureChoixMario;
