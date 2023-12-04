@@ -260,6 +260,7 @@ int Jeu::jouer()
 				sonVictoire.play();
 				if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
 					sonVictoire.stop();
+					audio.stopMusic();
 					continuer = false;
 					return ERROR_NEXT;
 				}

@@ -69,6 +69,7 @@ void Menu::select_start_menu(sf::Event event)
 			switch (getSelectedItemIndex())
 			{
 			case 0:
+				audio.stopMusic();
 				selectionLvl.selectGame();
 				break;
 			case 1:
