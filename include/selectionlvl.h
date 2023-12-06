@@ -26,6 +26,8 @@ public:
 
 private:
 	sf::RenderWindow* window;
+	sf::Clock clock;
+	sf::Time frameTime;
 
 	sf::Sprite background_sprite, character_sprite;
 	sf::Texture background_texture, character_texture;

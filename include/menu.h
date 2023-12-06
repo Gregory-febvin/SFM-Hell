@@ -9,6 +9,7 @@
 #include "menu_item.h"
 #include "selectionlvl.h"
 #include "jeu.h"
+#include "editeur.h"
 #include "constantes.h"
 #include "fichier.h"
 
@@ -23,8 +24,8 @@ public:
 	void create_start_menu();
 	void select_start_menu(sf::Event event);
 	void create_chapter_menu();
-	void select_chapter_menu(sf::Event event);
-	void select_editor_menu(sf::Event event);
+	int select_chapter_menu(sf::Event event);
+	int select_editor_menu(sf::Event event);
 
 	void draw();
 	void moveUp(int id_menu);

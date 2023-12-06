@@ -28,6 +28,9 @@ public:
 
 private:
 	sf::RenderWindow* window;
+	sf::Clock clock;
+	sf::Time frameTime;
+
 	sf::Font font;
 	sf::Sprite sprite_overlay, vide, mur, caisse, objectif, caisseOk, mario;
 	sf::Sprite* allAsset[6] = { &vide, &mur, &caisse, &objectif, &caisseOk, &mario };

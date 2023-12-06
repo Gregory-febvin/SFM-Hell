@@ -4,6 +4,8 @@
 #define LARGEUR_FENETRE		1366
 #define HAUTEUR_FENETRE		768
 
+#define FRAMERATE			1.0f / 60.0f
+
 #define TAILLE_BLOC         34
 #define NB_BLOCS_LARGEUR    12
 #define NB_BLOCS_HAUTEUR    12

@@ -2,6 +2,7 @@
 
 SelectionLvl::SelectionLvl(sf::RenderWindow* window) : window(window)
 {
+	frameTime = sf::seconds(FRAMERATE);
 	loadAssets();
 }
 
@@ -45,6 +46,7 @@ void SelectionLvl::selectGame()
 
 	// On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
 	while (continuer) {
+		sf::Time elapsed = clock.restart();
 		// On inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
 		sf::Event event;
 		while (window->pollEvent(event)) {
@@ -72,8 +74,10 @@ void SelectionLvl::selectGame()
 		}
 
 		// Effacement et dessin
-		window->clear();
-		window->display();
+		//if (elapsed >= frameTime) {
+			window->clear();
+			window->display();
+		//}
 	}
 }
 
@@ -93,6 +97,7 @@ void SelectionLvl::selectChapter()
 
 	// On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
 	while (continuer) {
+		sf::Time elapsed = clock.restart();
 		// On inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
 		sf::Event event;
 		while (window->pollEvent(event)) {
@@ -105,19 +110,23 @@ void SelectionLvl::selectChapter()
 					return;
 				}
 			}
-			menu.select_chapter_menu(event);
+
+			if (menu.select_chapter_menu(event) == ERROR_EXIT) {
+				return;
+			}
 		}
 
 		// Effacement et dessin
-		window->clear();
-		window->draw(background_sprite);
-		window->draw(text_title);
-		window->draw(text_command_quit);
-		window->draw(text_command_select);
-		menu.draw();
-		window->display();
-	}
+			
+			window->draw(background_sprite);
+			window->draw(text_title);
+			window->draw(text_command_quit);
+			window->draw(text_command_select);
+			menu.draw();
 
+			window->display();
+	}
+	window->clear();
 }
 
 void SelectionLvl::selectChapterEditor() {
@@ -135,6 +144,7 @@ void SelectionLvl::selectChapterEditor() {
 
     // On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
 	while (continuer) {
+		sf::Time elapsed = clock.restart();
 		// On inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
 		sf::Event event;
 		while (window->pollEvent(event)) {
@@ -148,47 +158,23 @@ void SelectionLvl::selectChapterEditor() {
 					return;
 				}
 			}
-			menu.select_editor_menu(event);
+
+			if (menu.select_editor_menu(event) == ERROR_EXIT) {
+				return;
+			}
 		}
 
 		// Effacement et dessin
-		window->clear();
-		window->draw(background_sprite);
-		window->draw(text_title);
-		window->draw(text_command_quit);
-		window->draw(text_command_select);
-		menu.draw();
-		window->display();
+		//if (elapsed >= frameTime) {
+			window->clear();
+
+			window->draw(background_sprite);
+			window->draw(text_title);
+			window->draw(text_command_quit);
+			window->draw(text_command_select);
+			menu.draw();
+
+			window->display();
+		//}
 	}
 }
-
-/*void SelectionLvl::regle() {
-
-    int continuer = 1;
-
-    // Chargement des textures du Menu de selection de niveau
-    sf::Texture textureRegle;
-    sf::Sprite regle;
-
-    textureRegle.loadFromFile("./assets/textures/regle.png");
-    regle.setTexture(textureRegle);
-
-    // On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
-    while (continuer == 1) {
-        // On inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::Escape) {
-                    continuer = 0;
-                }
-            }
-            window.draw(regle);
-            window.display();
-        }
-        window.clear(sf::Color::Black);
-    }
-}*/

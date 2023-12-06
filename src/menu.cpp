@@ -90,7 +90,6 @@ void Menu::select_start_menu(sf::Event event)
 			}
 		}
 	}
-
 }
 
 void Menu::create_chapter_menu()
@@ -121,7 +120,7 @@ void Menu::create_chapter_menu()
 
 }
 
-void Menu::select_chapter_menu(sf::Event event)
+int Menu::select_chapter_menu(sf::Event event)
 {
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Left) {
@@ -135,19 +134,21 @@ void Menu::select_chapter_menu(sf::Event event)
 
 			int cinematic = jeu.cinematic();
 			if (cinematic == ERROR_EXIT) {
-				return;
+				return ERROR_EXIT;
 			}
 
 			int jouer = jeu.jouer();
 			if (jouer == ERROR_EXIT) {
-				return;
+				return ERROR_EXIT;
 			}
 		}
 	}
+
 }
 
-void Menu::select_editor_menu(sf::Event event)
+int Menu::select_editor_menu(sf::Event event)
 {
+
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Left) {
 			moveUp(ID_MENU_CHAPTER);
@@ -156,9 +157,11 @@ void Menu::select_editor_menu(sf::Event event)
 			moveDown(ID_MENU_CHAPTER);
 		}
 		if (event.key.code == sf::Keyboard::Enter) {
-			editeur(window, getSelectedItemIndex() + 1);
+			Editeur editeur(window, getSelectedItemIndex() + 1);
+			return ERROR_EXIT;
 		}
 	}
+
 }
 
 void Menu::musicMenu() {
