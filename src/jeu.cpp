@@ -101,7 +101,7 @@ int Jeu::cinematic() {
 	sf::Text name;
 	name.setFont(font);
 	name.setFillColor(sf::Color(230, 77, 81));
-	name.setCharacterSize(FONT_SIZE_TITLE);
+	name.setCharacterSize(FONT_SIZE_NAME);
 	name.setString(dialogues[currentDialogueIndex].name);
 	name.setPosition(
 		(LARGEUR_FENETRE - name.getLocalBounds().width) / 2,

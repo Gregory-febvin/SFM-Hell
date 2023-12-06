@@ -2,7 +2,41 @@
 
 SelectionLvl::SelectionLvl(sf::RenderWindow* window) : window(window)
 {
+	loadAssets();
+}
 
+void SelectionLvl::loadAssets() 
+{
+	if (!font.loadFromFile("./assets/font/CrimsonPro-SemiBold.ttf")) {
+
+	}
+
+
+	if (background_texture.loadFromFile("./assets/textures/background.png")) {
+		background_sprite.setTexture(background_texture);
+		float scale = (HAUTEUR_FENETRE) / background_sprite.getGlobalBounds().height;
+		background_sprite.setScale(scale, scale);
+		background_sprite.setPosition(0, 0);
+	}
+
+	text_title.setFont(font);
+	text_title.setCharacterSize(FONT_SIZE_TITLE);
+
+	text_command_quit.setFont(font);
+	text_command_quit.setCharacterSize(FONT_SIZE_COMMAND);
+	text_command_quit.setString("- QUIT [ ECHAP ] -");
+	text_command_quit.setPosition(
+		(LARGEUR_FENETRE - text_command_quit.getLocalBounds().width) * 1 / 3,
+		(HAUTEUR_FENETRE - text_command_quit.getLocalBounds().height * 2)
+	);
+
+	text_command_select.setFont(font);
+	text_command_select.setCharacterSize(FONT_SIZE_COMMAND);
+	text_command_select.setString("- SELECT [ ENTER ] -");
+	text_command_select.setPosition(
+		(LARGEUR_FENETRE - text_command_select.getLocalBounds().width) * 2 / 3,
+		(HAUTEUR_FENETRE - text_command_select.getLocalBounds().height * 2)
+	);
 }
 
 void SelectionLvl::selectGame()
@@ -48,15 +82,11 @@ void SelectionLvl::selectChapter()
 
 	bool continuer = true;
 
-	sf::Sprite background_sprite, character_sprite;
-	sf::Texture background_texture, character_texture;
-
-	if (background_texture.loadFromFile("./assets/textures/background.png")) {
-		background_sprite.setTexture(background_texture);
-		float scale = (HAUTEUR_FENETRE) / background_sprite.getGlobalBounds().height;
-		background_sprite.setScale(scale, scale);
-		background_sprite.setPosition(0, 0);
-	}
+	text_title.setString("SELECT CHAPTER");
+	text_title.setPosition(
+		(LARGEUR_FENETRE - text_title.getLocalBounds().width) / 2,
+		(text_title.getLocalBounds().height / 2)
+	);
 
 	Menu menu(window);
 	menu.create_chapter_menu();
@@ -81,6 +111,9 @@ void SelectionLvl::selectChapter()
 		// Effacement et dessin
 		window->clear();
 		window->draw(background_sprite);
+		window->draw(text_title);
+		window->draw(text_command_quit);
+		window->draw(text_command_select);
 		menu.draw();
 		window->display();
 	}
@@ -89,12 +122,19 @@ void SelectionLvl::selectChapter()
 
 void SelectionLvl::selectChapterEditor() {
 
-    int continuer = 1;
+    int continuer = true;
+
+	text_title.setString("EDITOR");
+	text_title.setPosition(
+		(LARGEUR_FENETRE - text_title.getLocalBounds().width) / 2,
+		(text_title.getLocalBounds().height / 2)
+	);
+
 	Menu menu(window);
 	menu.create_chapter_menu();
 
     // On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
-	while (continuer == 1) {
+	while (continuer) {
 		// On inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
 		sf::Event event;
 		while (window->pollEvent(event)) {
@@ -113,6 +153,10 @@ void SelectionLvl::selectChapterEditor() {
 
 		// Effacement et dessin
 		window->clear();
+		window->draw(background_sprite);
+		window->draw(text_title);
+		window->draw(text_command_quit);
+		window->draw(text_command_select);
 		menu.draw();
 		window->display();
 	}
