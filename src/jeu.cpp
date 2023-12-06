@@ -101,7 +101,7 @@ int Jeu::cinematic() {
 	sf::Text name;
 	name.setFont(font);
 	name.setFillColor(sf::Color(230, 77, 81));
-	name.setCharacterSize(FONT_SIZE_TITLE);
+	name.setCharacterSize(FONT_SIZE_NAME);
 	name.setString(dialogues[currentDialogueIndex].name);
 	name.setPosition(
 		(LARGEUR_FENETRE - name.getLocalBounds().width) / 2,
@@ -134,6 +134,7 @@ int Jeu::cinematic() {
 
 	// Affichage des dialogues
 	while (continuer) {
+		sf::Time elapsed = clock.restart();
 		while (window->pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
 				window->close();
@@ -180,12 +181,16 @@ int Jeu::cinematic() {
 			}
 		}
 
-		window->clear();
-		window->draw(background_sprite);
-		window->draw(character_sprite);
-		window->draw(name);
-		window->draw(speech);
-		window->display();
+		if (elapsed >= frameTime) {
+			window->clear();
+
+			window->draw(background_sprite);
+			window->draw(character_sprite);
+			window->draw(name);
+			window->draw(speech);
+
+			window->display();
+		}
 	}
 }
 
@@ -318,13 +323,9 @@ int Jeu::jouer()
 					return ERROR_NEXT;
 				}
 			}
-
 			window->display();
-
 		}
-
-		window->clear(sf::Color(2, 2, 26));
-
+		window->clear();
 	}
 }
 

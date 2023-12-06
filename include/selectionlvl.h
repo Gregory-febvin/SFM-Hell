@@ -22,8 +22,15 @@ public:
 	void selectGame();
 	void selectChapter();
 	void selectChapterEditor();
-	//void regle();
+	void loadAssets();
 
 private:
 	sf::RenderWindow* window;
+	sf::Clock clock;
+	sf::Time frameTime;
+
+	sf::Sprite background_sprite, character_sprite;
+	sf::Texture background_texture, character_texture;
+	sf::Text text_title, text_command_quit, text_command_select;
+	sf::Font font;
 };

@@ -43,7 +43,7 @@ void MenuItem::setMenuItemChapter() {
 	rectangle.setPosition(position);
 
 	label.setColor(sf::Color(103, 103, 118));
-	label.setPosition((position.x + LARGEUR_LABEL_LVL / 2) - label.getLocalBounds().width + 10, (position.y + HAUTEUR_LABEL_LVL / 2) - label.getLocalBounds().height);
+	label.setPosition((position.x + LARGEUR_LABEL_LVL / 2) - label.getLocalBounds().width + 5, (position.y + HAUTEUR_LABEL_LVL / 2) - label.getLocalBounds().height);
 }
 
 void MenuItem::setSelectedItemChapter(bool isSelected) {
