@@ -47,6 +47,17 @@ void SelectionLvl::selectChapter()
 {
 
 	bool continuer = true;
+
+	sf::Sprite background_sprite, character_sprite;
+	sf::Texture background_texture, character_texture;
+
+	if (background_texture.loadFromFile("./assets/textures/background.png")) {
+		background_sprite.setTexture(background_texture);
+		float scale = (HAUTEUR_FENETRE) / background_sprite.getGlobalBounds().height;
+		background_sprite.setScale(scale, scale);
+		background_sprite.setPosition(0, 0);
+	}
+
 	Menu menu(window);
 	menu.create_chapter_menu();
 
@@ -69,6 +80,7 @@ void SelectionLvl::selectChapter()
 
 		// Effacement et dessin
 		window->clear();
+		window->draw(background_sprite);
 		menu.draw();
 		window->display();
 	}

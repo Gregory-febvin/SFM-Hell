@@ -4,15 +4,24 @@ Jeu::Jeu(sf::RenderWindow* window, int lvl)
 	: window(window), lvl(lvl) 
 {
 	loadAssets();
+	loadTexts();
 }
 
 void Jeu::loadAssets() {
 	// Chargement de la police d'écriture
 	font.loadFromFile("./assets/font/CrimsonPro-SemiBold.ttf");
 
+	// Chargement de l'overlay
+	texture_overlay.loadFromFile("./assets/textures/game_overlay.jpg");
+	sprite_overlay.setTexture(texture_overlay);
+	float scale = (LARGEUR_FENETRE) / sprite_overlay.getGlobalBounds().width;
+	sprite_overlay.setScale(scale, scale);
+	sprite_overlay.setPosition(0, 0);
+
 	// Chargement des textures des objets
 	textureVide.loadFromFile("./assets/textures/vide.png");
 	vide.setTexture(textureVide);
+
 
 	textureMur.loadFromFile("./assets/textures/mur.png");
 	mur.setTexture(textureMur);
@@ -35,6 +44,47 @@ void Jeu::loadAssets() {
 	textureMario[DROITE].loadFromFile("./assets/textures/mario_droite.png");
 }
 
+void Jeu::loadTexts() {
+	// Affichage commandes
+	text_command_quit.setFont(font);
+	text_command_quit.setCharacterSize(FONT_SIZE_COMMAND);
+	text_command_quit.setString("- QUIT [ ECHAP ] -");
+	text_command_quit.setPosition(
+		(LARGEUR_FENETRE - text_command_quit.getLocalBounds().width) * 1 / 3,
+		(HAUTEUR_FENETRE - text_command_quit.getLocalBounds().height * 2)
+	);
+
+	text_command_restart.setFont(font);
+	text_command_restart.setCharacterSize(FONT_SIZE_COMMAND);
+	text_command_restart.setString("- RESTART [ BACKSPACE ] -");
+	text_command_restart.setPosition(
+		(LARGEUR_FENETRE - text_command_restart.getLocalBounds().width) * 1 / 2,
+		(HAUTEUR_FENETRE - text_command_restart.getLocalBounds().height * 2)
+	);
+
+	text_command_skip.setFont(font);
+	text_command_skip.setCharacterSize(FONT_SIZE_COMMAND);
+	text_command_skip.setString("- SKIP [ SHIFT ] -");
+	text_command_skip.setPosition(
+		(LARGEUR_FENETRE - text_command_skip.getLocalBounds().width) * 2 / 3,
+		(HAUTEUR_FENETRE - text_command_skip.getLocalBounds().height * 2)
+	);
+	
+	// Affichage du numéro du niveau
+	text_lvl.setFont(font);
+	text_lvl.setCharacterSize(FONT_SIZE_NUMBER);
+	text_lvl.setString(fichier.convertIntToRoman(lvl));
+	text_lvl.setPosition(
+		(LARGEUR_FENETRE - text_lvl.getLocalBounds().width) * 8 / 9,
+		(HAUTEUR_FENETRE - text_lvl.getLocalBounds().height) * 6 / 8
+	);
+
+	// Affichage du nombre d'ennemis
+	text_ennemy.setFont(font);
+	text_ennemy.setCharacterSize(FONT_SIZE_NUMBER);
+
+}
+
 int Jeu::cinematic() {
 	bool continuer = true;
 	sf::Event event;
@@ -50,8 +100,8 @@ int Jeu::cinematic() {
 
 	sf::Text name;
 	name.setFont(font);
-	name.setFillColor(sf::Color::Red);
-	name.setCharacterSize(22);
+	name.setFillColor(sf::Color(230, 77, 81));
+	name.setCharacterSize(FONT_SIZE_TITLE);
 	name.setString(dialogues[currentDialogueIndex].name);
 	name.setPosition(
 		(LARGEUR_FENETRE - name.getLocalBounds().width) / 2,
@@ -61,7 +111,7 @@ int Jeu::cinematic() {
 	sf::Text speech;
 	speech.setFont(font);
 	speech.setFillColor(sf::Color::White);
-	speech.setCharacterSize(18);
+	speech.setCharacterSize(FONT_SIZE_TEXT);
 	speech.setString(dialogues[currentDialogueIndex].speech);
 	speech.setPosition(
 		(LARGEUR_FENETRE - speech.getLocalBounds().width) / 2,
@@ -145,7 +195,7 @@ int Jeu::jouer()
 	Audio audio;
 
 	bool continuer = true;
-	int objectifsRestants = NB_BLOCS_LARGEUR * NB_BLOCS_HAUTEUR, direction = BAS, i = 0, j = 0;
+	int direction = BAS, i = 0, j = 0;
 	int carte[NB_BLOCS_LARGEUR][NB_BLOCS_HAUTEUR] = { 0 };
 
 	// Chargement des musiques
@@ -176,7 +226,6 @@ int Jeu::jouer()
 			}
 		}
 	}
-
 
 	// On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
 	while (continuer) {
@@ -230,11 +279,17 @@ int Jeu::jouer()
 				carte[PositionJoueur.x][PositionJoueur.y] = MARIO;
 			}
 
+			window->draw(sprite_overlay);
+			window->draw(text_command_quit);
+			window->draw(text_command_skip);
+			window->draw(text_command_restart);
+			window->draw(text_lvl);
+
 			/* Affichage du niveau */
 			sf::FloatRect Position;
 			for (int ligne = 0; ligne < NB_BLOCS_LARGEUR; ligne++) {
 				for (int colonne = 0; colonne < NB_BLOCS_HAUTEUR; colonne++) {
-					Position.top = colonne * TAILLE_BLOC;
+					Position.top = ((HAUTEUR_FENETRE)-(HAUTEUR_FENETRE_JEU)) / 2 + colonne * TAILLE_BLOC;
 					Position.left = ((LARGEUR_FENETRE) - (LARGEUR_FENETRE_JEU)) / 2 + ligne * TAILLE_BLOC;
 					sf::Sprite* asset = allAsset[carte[ligne][colonne]];
 					asset->setPosition(Position.left, Position.top);
@@ -244,41 +299,45 @@ int Jeu::jouer()
 			mario.setTexture(textureMario[direction]);
 			window->draw(mario);
 
-			// Affichage du numéro du niveau
-			sf::Text niveau;
-			niveau.setFont(font);
-			niveau.setCharacterSize(36);
-			niveau.setString("Niveau " + std::to_string(lvl));
-			niveau.setPosition(
-				(LARGEUR_FENETRE_JEU - niveau.getLocalBounds().width) / 2,
-				(HAUTEUR_FENETRE - niveau.getLocalBounds().height * 2)
+			nb_ennemy = nbEnnemy(carte);
+
+			text_ennemy.setString(std::to_string(nb_ennemy));
+			text_ennemy.setPosition(
+				(LARGEUR_FENETRE - text_ennemy.getLocalBounds().width) * 1 / 9,
+				(HAUTEUR_FENETRE - text_ennemy.getLocalBounds().height) * 6 / 8
 			);
-			window->draw(niveau);
+			window->draw(text_ennemy);
 
 			// S'il ne reste plus d'objectif on gagne la partie
-			if (objectifsRestants == 0) {
+			if (nb_ennemy == 0) {
+				audio.stopMusic();
 				sonVictoire.play();
 				if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
 					sonVictoire.stop();
-					audio.stopMusic();
 					continuer = false;
 					return ERROR_NEXT;
 				}
 			}
-			else {
-				objectifsRestants = NB_BLOCS_LARGEUR * NB_BLOCS_HAUTEUR;
-				for (i = 0; i < NB_BLOCS_LARGEUR; i++) {
-					for (j = 0; j < NB_BLOCS_HAUTEUR; j++) {
-						if (carte[i][j] != OBJECTIF) {
-							objectifsRestants--;
-						}
-					}
-				}
-			}
+
 			window->display();
+
 		}
+
 		window->clear(sf::Color(2, 2, 26));
+
 	}
+}
+
+int Jeu::nbEnnemy(int carte[][NB_BLOCS_HAUTEUR]) {
+	int nb_ennemy = 0;
+	for (int i = 0; i < NB_BLOCS_LARGEUR; ++i) {
+		for (int j = 0; j < NB_BLOCS_HAUTEUR; ++j) {
+			if (carte[i][j] == OBJECTIF) {
+				nb_ennemy++;
+			}
+		}
+	}
+	return nb_ennemy;
 }
 
 void Jeu::deplacerJoueur(int carte[][NB_BLOCS_HAUTEUR], sf::Vector2i* PositionJoueur, int direction) {

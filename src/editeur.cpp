@@ -15,7 +15,7 @@ void editeur(sf::RenderWindow* window, int lvl) {
 
     int objetSelect = VIDE;
     int continuer = 1, i = 0, j = 0;
-    int carte[NB_BLOCS_LARGEUR][NB_BLOCS_HAUTEUR] = { 0 };
+    int map[NB_BLOCS_LARGEUR][NB_BLOCS_HAUTEUR] = { 0 };
 
     // Chargement de la police d'écriture
     sf::Font font;
@@ -61,7 +61,7 @@ void editeur(sf::RenderWindow* window, int lvl) {
     choixMario.setTexture(textureChoixMario);
 
 	Fichier fichier;
-    fichier.chargerNiveau(carte, lvl);
+    fichier.chargerNiveau(map, lvl);
 
     // On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
     while (continuer == 1) {
@@ -96,10 +96,10 @@ void editeur(sf::RenderWindow* window, int lvl) {
                 }
                 //Sauvegarde et chargement du niveau
                 if (event.key.code == sf::Keyboard::Enter) {
-                    fichier.sauvegarderNiveau(carte, lvl);
+                    fichier.sauvegarderNiveau(map, lvl);
                 }
                 if (event.key.code == sf::Keyboard::BackSpace) {
-                    fichier.chargerNiveau(carte, lvl);
+                    fichier.chargerNiveau(map, lvl);
                 }
             }
 
@@ -113,9 +113,9 @@ void editeur(sf::RenderWindow* window, int lvl) {
                     Position.top = colonne * TAILLE_BLOC;
                     Position.left = ligne * TAILLE_BLOC;
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                        carte[x][y] = objetSelect;
+                        map[x][y] = objetSelect;
                     }
-                    sf::Sprite* asset = allAsset [carte[ligne][colonne]] ;
+                    sf::Sprite* asset = allAsset [map[ligne][colonne]] ;
                     asset->setPosition(Position.left, Position.top);
                     window->draw(*asset);
                 }

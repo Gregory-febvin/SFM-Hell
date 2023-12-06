@@ -12,19 +12,19 @@ void Menu::draw() {
 	}
 }
 
-void Menu::moveUp() {
+void Menu::moveUp(int id_menu) {
 	if (selectedItemIndex > 0) {
-		menu_items[selectedItemIndex]->setSelected(false);
+		menu_items[selectedItemIndex]->setSelected(false, id_menu);
 		selectedItemIndex--;
-		menu_items[selectedItemIndex]->setSelected(true);
+		menu_items[selectedItemIndex]->setSelected(true, id_menu);
 	}
 }
 
-void Menu::moveDown() {
+void Menu::moveDown(int id_menu) {
 	if (selectedItemIndex < menu_items.size() - 1) {
-		menu_items[selectedItemIndex]->setSelected(false);
+		menu_items[selectedItemIndex]->setSelected(false, id_menu);
 		selectedItemIndex++;
-		menu_items[selectedItemIndex]->setSelected(true);
+		menu_items[selectedItemIndex]->setSelected(true, id_menu);
 	}
 }
 
@@ -41,14 +41,18 @@ void Menu::create_start_menu()
 		std::cout << "Failed to load font!" << std::endl;
 	}
 
-	menu_items.push_back(std::make_shared<MenuItem>(window, font, "NEW GAME", sf::Vector2f(100, 100)));
-	menu_items.push_back(std::make_shared<MenuItem>(window, font, "SELECT CHAPTER", sf::Vector2f(100, 150)));
-	menu_items.push_back(std::make_shared<MenuItem>(window, font, "EDITOR", sf::Vector2f(100, 200)));
-	menu_items.push_back(std::make_shared<MenuItem>(window, font, "EXIT", sf::Vector2f(100, 250)));
+	menu_items.push_back(std::make_shared<MenuItem>(window, font, "NEW GAME", sf::Vector2f(LARGEUR_FENETRE, SIZE_SPEECH + 50 * (menu_items.size() + 1))));
+	menu_items.push_back(std::make_shared<MenuItem>(window, font, "SELECT CHAPTER", sf::Vector2f(LARGEUR_FENETRE, SIZE_SPEECH + 50 * (menu_items.size() + 1))));
+	menu_items.push_back(std::make_shared<MenuItem>(window, font, "EDITOR", sf::Vector2f(LARGEUR_FENETRE, SIZE_SPEECH + 50 * (menu_items.size() + 1))));
+	menu_items.push_back(std::make_shared<MenuItem>(window, font, "EXIT", sf::Vector2f(LARGEUR_FENETRE, SIZE_SPEECH + 50 * (menu_items.size() + 1))));
+
+	for (std::shared_ptr<MenuItem>& menu_item : menu_items) {
+		menu_item->setMenuItemStart();
+	}
 
 	selectedItemIndex = 0;
 	if (selectedItemIndex >= 0 && selectedItemIndex < menu_items.size()) {
-		menu_items[selectedItemIndex]->setSelected(true);
+		menu_items[selectedItemIndex]->setSelectedItemStart(true);
 	}
 
 }
@@ -60,10 +64,10 @@ void Menu::select_start_menu(sf::Event event)
 
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Up) {
-			moveUp();
+			moveUp(ID_MENU_START);
 		}
 		if (event.key.code == sf::Keyboard::Down) {
-			moveDown();
+			moveDown(ID_MENU_START);
 		}
 		if (event.key.code == sf::Keyboard::Enter) {
 			switch (getSelectedItemIndex())
@@ -100,18 +104,19 @@ void Menu::create_chapter_menu()
 	int entry_count = fichier.nbLvlFile();
 
 	for (int i = 0; i < entry_count; i++) {
-		menu_items.push_back(std::make_shared<MenuItem>(
-			window,
-			font,
-			intToRoman(i + 1),
-			sf::Vector2f(((LARGEUR_FENETRE - (LARGEUR_LABEL_LVL * entry_count)) / 2) + (LARGEUR_LABEL_LVL * i), 100)
+		menu_items.push_back(std::make_shared<MenuItem>(window, font, fichier.convertIntToRoman(i + 1),
+			sf::Vector2f(((LARGEUR_FENETRE - ((LARGEUR_LABEL_LVL + 10) * entry_count)) / 2) + ((LARGEUR_LABEL_LVL + 10) * i), SIZE_SPEECH + LARGEUR_LABEL_LVL * 2)
 			));
+	}
+
+	for (std::shared_ptr<MenuItem>& menu_item : menu_items) {
+		menu_item->setMenuItemChapter();
 	}
 
 
 	selectedItemIndex = 0;
 	if (selectedItemIndex >= 0 && selectedItemIndex < menu_items.size()) {
-		menu_items[selectedItemIndex]->setSelected(true);
+		menu_items[selectedItemIndex]->setSelectedItemChapter(true);
 	}
 
 }
@@ -120,10 +125,10 @@ void Menu::select_chapter_menu(sf::Event event)
 {
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Left) {
-			moveUp();
+			moveUp(ID_MENU_CHAPTER);
 		}
 		if (event.key.code == sf::Keyboard::Right) {
-			moveDown();
+			moveDown(ID_MENU_CHAPTER);
 		}
 		if (event.key.code == sf::Keyboard::Enter) {
 			Jeu jeu(window, getSelectedItemIndex() + 1);
@@ -145,10 +150,10 @@ void Menu::select_editor_menu(sf::Event event)
 {
 	if (event.type == sf::Event::KeyPressed) {
 		if (event.key.code == sf::Keyboard::Left) {
-			moveUp();
+			moveUp(ID_MENU_CHAPTER);
 		}
 		if (event.key.code == sf::Keyboard::Right) {
-			moveDown();
+			moveDown(ID_MENU_CHAPTER);
 		}
 		if (event.key.code == sf::Keyboard::Enter) {
 			editeur(window, getSelectedItemIndex() + 1);
@@ -170,19 +175,4 @@ void Menu::clearMenu() {
 	window->clear();
 	menu_items.clear();
 	selectedItemIndex = 0;
-}
-
-string Menu::intToRoman(int num) {
-	std::vector<int> values = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
-	std::vector<std::string> numerals = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
-
-	std::string result = "";
-	for (size_t i = 0; i < values.size(); ++i) {
-		while (num >= values[i]) {
-			num -= values[i];
-			result += numerals[i];
-		}
-	}
-
-	return result;
 }

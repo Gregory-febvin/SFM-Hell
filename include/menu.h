@@ -27,18 +27,19 @@ public:
 	void select_editor_menu(sf::Event event);
 
 	void draw();
-	void moveUp();
-	void moveDown();
+	void moveUp(int id_menu);
+	void moveDown(int id_menu);
 	int getSelectedItemIndex() const;
 
 	void musicMenu();
 	void clearMenu();
-	std::string intToRoman(int num);
 
 private:
 	sf::RenderWindow* window;
 	sf::Font font;
+	sf::RectangleShape rectangle;
 
+	Fichier fichier;
 	Audio audio;
 
 	std::vector<std::shared_ptr<MenuItem>> menu_items;

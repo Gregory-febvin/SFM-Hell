@@ -19,21 +19,24 @@ public:
 	Jeu(sf::RenderWindow* window, int lvl);
 
 	void loadAssets();
+	void loadTexts();
 	int cinematic();
 	int jouer();
+	int nbEnnemy(int carte[][NB_BLOCS_HAUTEUR]);
 	void deplacerJoueur(int carte[][NB_BLOCS_HAUTEUR], sf::Vector2i* pos, int direction);
 	void deplacerCaisse(int* premiereCase, int* secondeCase);
 
 private:
 	sf::RenderWindow* window;
 	sf::Font font;
-	sf::Sprite vide, mur, caisse, objectif, caisseOk, mario;
+	sf::Sprite sprite_overlay, vide, mur, caisse, objectif, caisseOk, mario;
 	sf::Sprite* allAsset[6] = { &vide, &mur, &caisse, &objectif, &caisseOk, &mario };
-	sf::Texture textureVide, textureMur, textureCaisse, textureCaisseOk, textureObjectif, textureMario[5];
+	sf::Texture texture_overlay, textureVide, textureMur, textureCaisse, textureCaisseOk, textureObjectif, textureMario[5];
 	sf::Vector2i Position, PositionJoueur;
+	sf::Text text_command_restart, text_command_quit, text_command_skip, text_lvl, text_ennemy;
 
 	Fichier fichier;
 
-	int lvl;
+	int lvl, nb_ennemy;
 };
 

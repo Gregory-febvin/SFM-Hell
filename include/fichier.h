@@ -28,4 +28,5 @@ public:
 	int sauvegarderNiveau(int niveau[][NB_BLOCS_HAUTEUR], int lvl);
 	std::vector<DialogueData> readDialogues(int lvl);
 	int nbLvlFile();
+	std::string convertIntToRoman(int num);
 };
