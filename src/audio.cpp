@@ -30,3 +30,14 @@ void Audio::playMusic() {
 void Audio::stopMusic() {
     buffer.stop();
 }
+
+void Audio::musicMenu() {
+
+	if (!loadMusic("./assets/audio/musics/Title_Theme.ogg")) {
+		cout << "La musique n'a pas chargée";
+	}
+	else {
+		playMusic();
+	}
+
+}

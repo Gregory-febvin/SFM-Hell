@@ -35,7 +35,7 @@ int Menu::getSelectedItemIndex() const {
 void Menu::create_start_menu()
 {
 
-	musicMenu();
+	audio.musicMenu();
 
 	if (!font.loadFromFile("./assets/font/CrimsonPro-SemiBold.ttf")) {
 		std::cout << "Failed to load font!" << std::endl;
@@ -70,10 +70,10 @@ void Menu::select_start_menu(sf::Event event)
 			moveDown(ID_MENU_START);
 		}
 		if (event.key.code == sf::Keyboard::Enter) {
+			audio.stopMusic();
 			switch (getSelectedItemIndex())
 			{
 			case 0:
-				audio.stopMusic();
 				selectionLvl.selectGame();
 				break;
 			case 1:
@@ -160,16 +160,6 @@ int Menu::select_editor_menu(sf::Event event)
 			Editeur editeur(window, getSelectedItemIndex() + 1);
 			return ERROR_EXIT;
 		}
-	}
-
-}
-
-void Menu::musicMenu() {
-
-	if (!audio.loadMusic("./assets/audio/musics/Title_Theme.ogg")) {
-		cout << "La musique n'a pas chargée";
-	} else {
-		audio.playMusic();
 	}
 
 }

@@ -38,7 +38,6 @@ int main(int argc, char **argv) {
 
 	// On fait tourner le programme jusqu'à ce que la fenêtre soit fermée
 	while (window.isOpen()) {
-		sf::Time elapsed = clock.restart();
 		// On inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -48,14 +47,14 @@ int main(int argc, char **argv) {
 			menu.select_start_menu(event);
 		}
 
-		if (elapsed >= frameTime) {
+		//if (elapsed >= frameTime) {
 			window.clear();
 			window.draw(title_screen_sprite);
 			window.draw(transparentRect);
 			menu.draw();
 
 			window.display();
-		}
+		//}
 	}
 
 	return 0;

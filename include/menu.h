@@ -32,7 +32,6 @@ public:
 	void moveDown(int id_menu);
 	int getSelectedItemIndex() const;
 
-	void musicMenu();
 	void clearMenu();
 
 private:

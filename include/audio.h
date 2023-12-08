@@ -18,6 +18,7 @@ public:
     bool loadMusic(const std::string& filePath);
     void playMusic();
     void stopMusic();
+	void musicMenu();
 
     sf::Music buffer;
 };

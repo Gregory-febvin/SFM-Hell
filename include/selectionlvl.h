@@ -9,7 +9,7 @@
 #include "../include/editeur.h"
 
 #include "../include/audio.h"
-#include "../include/Menu.h"
+#include "../include/menu.h"
 
 using namespace std;
 
@@ -33,4 +33,6 @@ private:
 	sf::Texture background_texture, character_texture;
 	sf::Text text_title, text_command_quit, text_command_select;
 	sf::Font font;
+
+	Audio audio;
 };
