@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Gregory-febvin/SFM-Hell/blob/main/assets/textures/logo.jpg" width="200px">
+  <img src="https://github.com/user-attachments/assets/35ab9b51-1817-4228-ae23-069201b7aaf5" width="200px">
   <h1>SFM HELL</h1>
 </div>
 
